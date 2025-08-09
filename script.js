@@ -365,5 +365,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     setupScrollArrows('.services-grid', '#services-arrows');
-    // You can add similar calls for portfolio and testimonials if you want arrows for those too
+    setupScrollArrows('.portfolio-grid', '#portfolio-arrows');
+    setupScrollArrows('.testimonials-grid', '#testimonials-arrows');
 }); 
