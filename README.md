@@ -1,6 +1,6 @@
-# CodeCrafterz - Freelance Agency Website
+# Siddhant Gupta - Freelance Portfolio Website
 
-A modern, professional website for CodeCrafterz development agency, built to attract high-quality clients and showcase expertise in full-stack development.
+A modern, professional website for Siddhant Gupta, built to attract high-quality clients and showcase expertise in full-stack development.
 
 ## 🚀 Quick Start
 
@@ -86,10 +86,10 @@ Upload all files to your web hosting provider's public folder (usually `public_h
 
 ## 📧 Contact Configuration
 
-The contact form is configured to send emails to `codecrafterz101@gmail.com`. To change this:
+The contact form is configured to send emails to `siddhantgupta385@gmail.com`. To change this:
 
 1. Open `script.js`
-2. Find the line with `mailto:codecrafterz101@gmail.com`
+2. Find the line with `mailto:siddhantgupta385@gmail.com`
 3. Replace with your email address
 
 ## 🎨 Customization
@@ -169,8 +169,8 @@ This is a client website project. For updates:
 
 ## 📞 Support
 
-For technical support or customization requests, contact codecrafterz101@gmail.com
+For technical support or customization requests, contact siddhantgupta385@gmail.com
 
 ---
 
-**Built with ❤️ by CodeCrafterz** 
+**Built with ❤️ by Siddhant Gupta** 

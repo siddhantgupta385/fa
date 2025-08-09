@@ -101,7 +101,7 @@ if (contactForm) {
         
         // Create mailto link
         const subject = `New Project Inquiry: ${project}`;
-        const body = `Hi CodeCrafterz,
+        const body = `Hi Siddhant Gupta,
 
 I'm interested in working with you on a project.
 
@@ -117,7 +117,7 @@ Looking forward to hearing from you!
 Best regards,
 ${name}`;
         
-        const mailtoLink = `mailto:codecrafterz101@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        const mailtoLink = `mailto:siddhantgupta385@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         
         // Open email client
         window.location.href = mailtoLink;
@@ -237,15 +237,15 @@ window.addEventListener('load', () => {
 function typeWriter(element, text, speed = 50) {
     let i = 0;
     element.innerHTML = '';
-    
+    // If the text contains HTML, split by tags and characters
+    const tokens = text.match(/<[^>]+>|[^<]/g);
     function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
+        if (i < tokens.length) {
+            element.innerHTML += tokens[i];
             i++;
             setTimeout(type, speed);
         }
     }
-    
     type();
 }
 
@@ -345,4 +345,25 @@ document.head.appendChild(rippleStyles);
 // Add ripple effect to all buttons
 document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('click', createRipple);
+}); 
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Scroll arrows for horizontally scrollable card sections
+    function setupScrollArrows(gridSelector, arrowContainerSelector) {
+        const grid = document.querySelector(gridSelector);
+        const arrows = document.querySelector(arrowContainerSelector);
+        if (!grid || !arrows) return;
+        const left = arrows.querySelector('.arrow-left');
+        const right = arrows.querySelector('.arrow-right');
+        left.addEventListener('click', function(e) {
+            e.preventDefault();
+            grid.scrollBy({ left: -grid.offsetWidth * 0.8, behavior: 'smooth' });
+        });
+        right.addEventListener('click', function(e) {
+            e.preventDefault();
+            grid.scrollBy({ left: grid.offsetWidth * 0.8, behavior: 'smooth' });
+        });
+    }
+    setupScrollArrows('.services-grid', '#services-arrows');
+    // You can add similar calls for portfolio and testimonials if you want arrows for those too
 }); 
