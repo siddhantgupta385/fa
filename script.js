@@ -392,20 +392,35 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // ---- AUTO SCROLL LOGIC ----
-        let autoScrollInterval = setInterval(() => {
-            // If we've reached the end, scroll back to start
-            if (grid.scrollLeft + grid.offsetWidth >= grid.scrollWidth - 10) {
-                grid.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
-                grid.scrollBy({ left: grid.offsetWidth * 0.8, behavior: 'smooth' });
-            }
-        }, 3000); // every 3 seconds
+        // ---- AUTO SCROLL LOGIC (Smooth + Circular) ----
+let autoScrollInterval = setInterval(() => {
+
+    console.log({
+  scrollLeft: grid.scrollLeft,
+  offsetWidth: grid.offsetWidth,
+  scrollWidth: grid.scrollWidth
+});
+    const atEnd = grid.scrollLeft + grid.offsetWidth >= grid.scrollWidth - 30;
+
+    if (atEnd) {
+        // Instantly jump to start (no smooth animation)
+        grid.scrollTo({ left: 0, behavior: 'auto' });
+
+        // Small delay before resuming smooth scroll
+        setTimeout(() => {
+            grid.scrollBy({ left: grid.offsetWidth * 0.8, behavior: 'smooth' });
+        }, 300);
+    } else {
+        grid.scrollBy({ left: grid.offsetWidth * 0.8, behavior: 'smooth' });
+    }
+}, 3000);
+ // every 3 seconds
 
         // Pause auto scroll on hover (optional)
         grid.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
         grid.addEventListener('mouseleave', () => {
             autoScrollInterval = setInterval(() => {
-                if (grid.scrollLeft + grid.offsetWidth >= grid.scrollWidth - 10) {
+                if (grid.scrollLeft + grid.offsetWidth >= grid.scrollWidth - 30) {
                     grid.scrollTo({ left: 0, behavior: 'smooth' });
                 } else {
                     grid.scrollBy({ left: grid.offsetWidth * 0.8, behavior: 'smooth' });
