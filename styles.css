@@ -962,14 +962,31 @@ body {
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         padding-bottom: 1rem;
+
+        /* ADDED: Padding to allow cards to be centered */
+        padding-left: 5vw;
+        padding-right: 5vw;
+
+        /* ADDED: Hide the scrollbar for a cleaner look */
+        scrollbar-width: none; /* For Firefox */
     }
+
+    /* ADDED: Hide scrollbar for Chrome, Safari, and Opera */
+    .services-grid::-webkit-scrollbar,
+    .portfolio-grid::-webkit-scrollbar,
+    .testimonials-grid::-webkit-scrollbar {
+        display: none;
+    }
+
     .service-card,
     .portfolio-card,
     .testimonial-card {
-        min-width: 80vw;
-        max-width: 90vw;
-        flex: 0 0 auto;
-        scroll-snap-align: start;
+        /* CHANGED: Use a fixed width for predictability */
+        width: 90vw; 
+        flex-shrink: 0; /* Prevent cards from shrinking */
+        
+        /* CHANGED: This is the key to centering the snapped card */
+        scroll-snap-align: center; 
     }
 
     .skills-categories {
@@ -1284,4 +1301,4 @@ html {
         right: 0.7rem;
         bottom: 0.7rem;
     }
-} 
+}

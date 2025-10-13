@@ -375,8 +375,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const grid = document.querySelector(gridSelector);
         const arrows = document.querySelector(arrowContainerSelector);
         if (!grid || !arrows) return;
+
         const left = arrows.querySelector('.arrow-left');
         const right = arrows.querySelector('.arrow-right');
+
+        // Manual scrolling
         left.addEventListener('click', function(e) {
             e.preventDefault();
             grid.scrollBy({ left: -grid.offsetWidth * 0.8, behavior: 'smooth' });
@@ -385,8 +388,32 @@ document.addEventListener('DOMContentLoaded', function () {
             e.preventDefault();
             grid.scrollBy({ left: grid.offsetWidth * 0.8, behavior: 'smooth' });
         });
+
+        // ---- AUTO SCROLL LOGIC ----
+        let autoScrollInterval = setInterval(() => {
+            // If we've reached the end, scroll back to start
+            if (grid.scrollLeft + grid.offsetWidth >= grid.scrollWidth - 10) {
+                grid.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                grid.scrollBy({ left: grid.offsetWidth * 0.8, behavior: 'smooth' });
+            }
+        }, 3000); // every 3 seconds
+
+        // Pause auto scroll on hover (optional)
+        grid.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+        grid.addEventListener('mouseleave', () => {
+            autoScrollInterval = setInterval(() => {
+                if (grid.scrollLeft + grid.offsetWidth >= grid.scrollWidth - 10) {
+                    grid.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    grid.scrollBy({ left: grid.offsetWidth * 0.8, behavior: 'smooth' });
+                }
+            }, 3000);
+        });
     }
+
+    // Initialize for all scrollable grids
     setupScrollArrows('.services-grid', '#services-arrows');
     setupScrollArrows('.portfolio-grid', '#portfolio-arrows');
     setupScrollArrows('.testimonials-grid', '#testimonials-arrows');
-}); 
+});
