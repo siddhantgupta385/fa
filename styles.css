@@ -11,8 +11,8 @@
     
     --accent-yellow: #ffd700;    /* Highlights, stars */
     --accent-cyan: #569cd6;      /* Logos, titles, links */
-    --accent-orange: #ce9178;    /* Buttons, stats */
-    --accent-green: #6a9955;     /* Upwork FAB, success */
+    --accent-orange: #ffd700;    /* Buttons, stats */
+    --accent-green: #108a00;     /* Upwork FAB, success */
 }
 
 /* Reset and Base Styles */
@@ -64,7 +64,7 @@ body {
     font-size: 1.5rem;
     font-weight: 700;
     /* color: var(--accent-cyan); */
-    color: blue;
+    color: #ffffff;
 }
 
 .nav-logo i {
@@ -189,6 +189,7 @@ body {
 
 .hero-stats {
     display: flex;
+    /* flex-wrap: wrap; */
     gap: 2rem;
     margin-bottom: 2.5rem;
 }
@@ -234,7 +235,7 @@ body {
 }
 
 .btn-primary:hover {
-    background: #d99d86;
+    background: #ffbf00;
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
@@ -270,6 +271,7 @@ body {
     border-radius: 10px;
     padding: 20px;
     position: relative;
+    top: 150px;
     backdrop-filter: blur(10px);
 }
 
@@ -454,17 +456,20 @@ body {
 }
 .portfolio-content{
     a{
-        text-decoration: none;
+        text-decoration: underline;
         color: var(--accent-cyan);
         font-weight: 500;
         transition: color 0.3s ease;
         position: relative;
+        font-style: italic;
     }
 }
 
 .testimonial-author{
     a{
-        text-decoration: none;
+        /* padding:1px 0 ; */
+        text-decoration: underline;
+        font-style: italic;
         color: var(--accent-cyan);
         font-weight: 500;
         transition: color 0.3s ease;
@@ -760,9 +765,9 @@ body {
 .footer-logo {
     display: flex;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 700;
-    color: var(--accent-cyan);
+    color: white;
     margin-bottom: 1rem;
 }
 
@@ -848,6 +853,16 @@ body {
 }
 
 @media (max-width: 768px) {
+    .hero{
+        padding-top: 0;
+    }
+    .hero-description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
     .mobile-only {
         display: flex !important;
         justify-content: flex-end;
@@ -874,7 +889,7 @@ body {
         left: 0;
     }
     .hero {
-        margin-top: 70px;
+        margin-top: 30px;
     }
     .hero-container {
         margin-top: 1.5rem;
@@ -884,7 +899,20 @@ body {
     }
     .hero-stats {
         justify-content: center;
+
     }
+    .stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-orange);
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    opacity: 0.8;
+    color: var(--text-secondary);
+}
+
     .contact-content {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -934,6 +962,9 @@ body {
 }
 
 @media (max-width: 480px) {
+        .hero{
+        padding-top: 0;
+    }
     .hero-title {
         font-size: 2.2rem;
     }
@@ -946,6 +977,9 @@ body {
 
 
 @media (max-width: 600px) {
+        .hero{
+        padding-top:0;
+    }
     .upwork-fab {
         min-width: 44px;
         width: 44px;
@@ -972,12 +1006,15 @@ body {
         justify-content: center;
         line-height: 1 !important;
     }
-    .upwork-fab i.fab.fa-upwork:empty::before {
-        content: "💼";
-        font-size: 1.5rem; /* Adjusted size for better fit */
-        color: #fff;
-        display: block;
-    }
+.upwork-fab i.fab.fa-upwork:empty::before {
+    content: "\f7e0"; /* Font Awesome Upwork icon code */
+    font-family: "Font Awesome 6 Brands"; /* Ensure using FA brand font */
+    font-size: 2rem;
+    /* border-radius: 50%; */
+    color: #fff;
+    display: block;
+}
+
 }
 
 /* Animations & Other Utility classes */
