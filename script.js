@@ -211,13 +211,13 @@ notificationStyles.textContent = `
 document.head.appendChild(notificationStyles);
 
 // Parallax effect for hero section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-    }
-});
+// window.addEventListener('scroll', () => {
+//     const scrolled = window.pageYOffset;
+//     const hero = document.querySelector('.hero');
+//     if (hero) {
+//         hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+//     }
+// });
 
 // Add loading animation to page
 window.addEventListener('load', () => {
@@ -233,33 +233,55 @@ window.addEventListener('load', () => {
     });
 });
 
-// Typing effect for hero title
-function typeWriter(element, text, speed = 50) {
-    let i = 0;
-    element.innerHTML = '';
-    // If the text contains HTML, split by tags and characters
-    const tokens = text.match(/<[^>]+>|[^<]/g);
-    function type() {
-        if (i < tokens.length) {
-            element.innerHTML += tokens[i];
-            i++;
-            setTimeout(type, speed);
+// // Typing effect for hero title
+// function typeWriter(element, text, speed = 50) {
+//     let i = 0;
+//     element.innerHTML = '';
+//     // If the text contains HTML, split by tags and characters
+//     const tokens = text.match(/<[^>]+>|[^<]/g);
+//     function type() {
+//         if (i < tokens.length) {
+//             element.innerHTML += tokens[i];
+//             i++;
+//             setTimeout(type, speed);
+//         }
+//     }
+//     type();
+// }
+
+// // Initialize typing effect when page loads
+// document.addEventListener('DOMContentLoaded', () => {
+//     const heroTitle = document.querySelector('.hero-title');
+//     if (heroTitle) {
+//         const originalText = heroTitle.innerHTML;
+//         setTimeout(() => {
+//             typeWriter(heroTitle, originalText, 30);
+//         }, 500);
+//     }
+// });
+   if (typeof Typed !== 'undefined') {
+        const typedOptions = {
+            strings: [
+                'Expert Full-Stack Development <span class="highlight">That delivers results.</span>'
+            ],
+            typeSpeed: 40,
+            showCursor: true,
+            cursorChar: '|',
+            startDelay: 100,
+            onComplete: (self) => {
+                if (self.cursor) {
+                    self.cursor.style.animation = 'typed-blink 0.75s infinite';
+                }
+            },
+        };
+        if (document.querySelector('#typed-output')) {
+            new Typed('#typed-output', typedOptions);
         }
+        // Add the blink animation for the cursor
+        const blinkKeyframes = document.createElement('style');
+        blinkKeyframes.textContent = `@keyframes typed-blink { from, to { opacity: 1; } 50% { opacity: 0; } }`;
+        document.head.appendChild(blinkKeyframes);
     }
-    type();
-}
-
-// Initialize typing effect when page loads
-document.addEventListener('DOMContentLoaded', () => {
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        const originalText = heroTitle.innerHTML;
-        setTimeout(() => {
-            typeWriter(heroTitle, originalText, 30);
-        }, 500);
-    }
-});
-
 // Add scroll progress indicator
 function createScrollIndicator() {
     const indicator = document.createElement('div');
