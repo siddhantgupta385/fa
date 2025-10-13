@@ -266,7 +266,7 @@ window.addEventListener('load', () => {
             strings: [
                 'Expert Full-Stack Development <span class="highlight">That delivers results.</span>'
             ],
-            typeSpeed: 40,
+            typeSpeed: 20,
             showCursor: true,
             cursorChar: '|',
             startDelay: 100,
@@ -281,7 +281,7 @@ window.addEventListener('load', () => {
         }
         // Add the blink animation for the cursor
         const blinkKeyframes = document.createElement('style');
-        blinkKeyframes.textContent = `@keyframes typed-blink { from, to { opacity: 1; } 50% { opacity: 0; } }`;
+        blinkKeyframes.textContent = `@keyframes typed-blink { from, to { opacity: 0; } 50% { opacity: 0; } }`;
         document.head.appendChild(blinkKeyframes);
     }
 // Add scroll progress indicator
