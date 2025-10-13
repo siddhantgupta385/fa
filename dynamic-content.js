@@ -20,6 +20,7 @@ class DynamicContentLoader {
     async loadPersonalDetails() {
         try {
             const personal = await SupabaseDB.getPersonalDetails();
+            // console.log('Personal Details:', personal.title);
             if (!personal) return;
         
         // Update navigation logo
@@ -27,10 +28,15 @@ class DynamicContentLoader {
         if (navLogo) navLogo.textContent = personal.name;
 
         // Update hero title
-        const heroTitle = document.querySelector('.hero-title');
-        if (heroTitle) {
-            heroTitle.innerHTML = `${personal.title} <span class="highlight">That Delivers Results</span>`;
-        }
+        // const heroTitle = document.querySelector('.hero-title');
+        // if (heroTitle) {
+        //     heroTitle.innerHTML = `${personal.title} <span class="highlight">That Delivers Results</span>`;
+        // }
+        // const highlightitem = document.getElementsByClassName('highlight');
+        // console.log('Highlight Item:', highlightitem);
+        // if (highlightitem.length > 0) {
+        //     highlightitem[0].innerHTML = 'That delivers results.';
+        // }
 
         // Update contact details
         const emailElement = document.querySelector('.contact-item span');

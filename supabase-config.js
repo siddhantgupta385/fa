@@ -1,7 +1,11 @@
 // Supabase Configuration
 // Replace these with your actual Supabase credentials
-const SUPABASE_URL = 'https://bbinznlzxtdkzglcwmua.supabase.co'; // e.g., 'https://xxxxx.supabase.co'
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJiaW56bmx6eHRka3pnbGN3bXVhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU1MzgzNzAsImV4cCI6MjA3MTExNDM3MH0.YKLlSJA8HTN9YAkXETjC53yHUvks2JR7WAPazPyb7Go'; // Your anon public key
+// const SUPABASE_URL = 'https://bbinznlzxtdkzglcwmua.supabase.co'; // e.g., 'https://xxxxx.supabase.co'
+// const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJiaW56bmx6eHRka3pnbGN3bXVhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU1MzgzNzAsImV4cCI6MjA3MTExNDM3MH0.YKLlSJA8HTN9YAkXETjC53yHUvks2JR7WAPazPyb7Go'; // Your anon public key
+
+const SUPABASE_URL = 'https://gouywraqaenqilhaaaug.supabase.co'; // The URL you received
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdvdXl3cmFxYWVucWlsaGFhYXVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkyNDA0NTcsImV4cCI6MjA3NDgxNjQ1N30.jSxpcU6HI08RTpVaybW6nFLBjMlxbbnS8M5Qleoe-FM'; // The new key you received
+
 
 // Initialize Supabase client
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
