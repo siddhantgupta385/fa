@@ -949,7 +949,11 @@ body {
         flex-shrink: 0;
         scroll-snap-align: start;
     }
-
+.service-card:hover, .portfolio-card:hover, .testimonial-card:hover {
+    transform: scale(1.0011);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: var(--accent-cyan);
+}
 
     
     .arrow {
