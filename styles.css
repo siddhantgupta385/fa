@@ -476,7 +476,7 @@ body {
         /* padding:1px 0 ; */
         text-decoration: underline;
         font-style: italic;
-        color: var(--accent-cyan);
+        color: var(--accent-newcyan);
         font-weight: 500;
         transition: color 0.3s ease;
         position: relative;
