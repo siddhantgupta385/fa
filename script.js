@@ -266,7 +266,7 @@ window.addEventListener('load', () => {
             strings: [
                 'Expert Full-Stack Development <span class="highlight">That delivers results.</span>'
             ],
-            typeSpeed: 20,
+            typeSpeed: 30,
             showCursor: true,
             cursorChar: '|',
             startDelay: 100,
@@ -371,8 +371,8 @@ document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('click', createRipple);
 }); 
 
+
 document.addEventListener('DOMContentLoaded', function () {
-    // Scroll arrows for horizontally scrollable card sections
     function setupScrollArrows(gridSelector, arrowContainerSelector) {
         const grid = document.querySelector(gridSelector);
         const arrows = document.querySelector(arrowContainerSelector);
@@ -382,53 +382,59 @@ document.addEventListener('DOMContentLoaded', function () {
         const right = arrows.querySelector('.arrow-right');
 
         // Manual scrolling
-        left.addEventListener('click', function(e) {
+        left.addEventListener('click', function (e) {
             e.preventDefault();
             grid.scrollBy({ left: -grid.offsetWidth * 0.8, behavior: 'smooth' });
         });
-        right.addEventListener('click', function(e) {
+        right.addEventListener('click', function (e) {
             e.preventDefault();
             grid.scrollBy({ left: grid.offsetWidth * 0.8, behavior: 'smooth' });
         });
 
-        // ---- AUTO SCROLL LOGIC ----
-        // ---- AUTO SCROLL LOGIC (Smooth + Circular) ----
-let autoScrollInterval = setInterval(() => {
-
-    console.log({
-  scrollLeft: grid.scrollLeft,
-  offsetWidth: grid.offsetWidth,
-  scrollWidth: grid.scrollWidth
-});
-    const atEnd = grid.scrollLeft + grid.offsetWidth >= grid.scrollWidth - 30;
-
-    if (atEnd) {
-        // Instantly jump to start (no smooth animation)
-        grid.scrollTo({ left: 0, behavior: 'auto' });
-
-        // Small delay before resuming smooth scroll
-        setTimeout(() => {
-            grid.scrollBy({ left: grid.offsetWidth * 0.8, behavior: 'smooth' });
-        }, 300);
-    } else {
-        grid.scrollBy({ left: grid.offsetWidth * 0.8, behavior: 'smooth' });
-    }
-}, 3000);
- // every 3 seconds
-
-        // Pause auto scroll on hover (optional)
-        grid.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
-        grid.addEventListener('mouseleave', () => {
+        // Auto-scroll function
+        let autoScrollInterval;
+        const startAutoScroll = () => {
+            if (autoScrollInterval) return; // prevent multiple intervals
             autoScrollInterval = setInterval(() => {
-                if (grid.scrollLeft + grid.offsetWidth >= grid.scrollWidth - 30) {
+                const atEnd = grid.scrollLeft + grid.offsetWidth >= grid.scrollWidth - 30;
+                if (atEnd) {
                     grid.scrollTo({ left: 0, behavior: 'smooth' });
+                    // setTimeout(() => {
+                    //     grid.scrollBy({ left: grid.offsetWidth * 0.8, behavior: 'smooth' });
+                    // }, 300);
                 } else {
                     grid.scrollBy({ left: grid.offsetWidth * 0.8, behavior: 'smooth' });
                 }
             }, 3000);
-        });
-    }
+        };
 
+        const stopAutoScroll = () => {
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = null;
+        };
+
+        // Pause on hover
+        grid.addEventListener('mouseenter', stopAutoScroll);
+        grid.addEventListener('mouseleave', startAutoScroll);
+
+        // --- Intersection Observer to start auto-scroll only when visible ---
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        startAutoScroll();
+                    } else {
+                        stopAutoScroll();
+                    }
+                });
+            },
+            {
+                threshold: 0.5, // triggers when 50% of the grid is visible
+            }
+        );
+
+        observer.observe(grid);
+    }
     // Initialize for all scrollable grids
     setupScrollArrows('.services-grid', '#services-arrows');
     setupScrollArrows('.portfolio-grid', '#portfolio-arrows');
