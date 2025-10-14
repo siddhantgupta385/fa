@@ -939,14 +939,23 @@ body {
         padding-right: 5vw;
         scrollbar-width: none;
     }
+  
+    
     .services-grid::-webkit-scrollbar, .portfolio-grid::-webkit-scrollbar, .testimonials-grid::-webkit-scrollbar {
         display: none;
     }
     .service-card, .portfolio-card, .testimonial-card {
         width: 90vw;
         flex-shrink: 0;
-        scroll-snap-align: center;
+        scroll-snap-align: start;
     }
+
+.service-card:hover, .portfolio-card:hover, .testimonial-card:hover {
+    transform: scale(1.0011);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: var(--accent-cyan);
+}
+    
     .arrow {
         background: var(--bg-tertiary);
         color: var(--text-primary);

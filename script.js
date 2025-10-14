@@ -396,6 +396,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const startAutoScroll = () => {
             if (autoScrollInterval) return; // prevent multiple intervals
             autoScrollInterval = setInterval(() => {
+                
                 const atEnd = grid.scrollLeft + grid.offsetWidth >= grid.scrollWidth - 30;
                 if (atEnd) {
                     grid.scrollTo({ left: 0, behavior: 'smooth' });
