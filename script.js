@@ -175,7 +175,7 @@ if (typeof Typed !== 'undefined') {
         new Typed('#typed-output', typedOptions);
     }
     const blinkKeyframes = document.createElement('style');
-    blinkKeyframes.textContent = `@keyframes typed-blink { 50% { opacity: 1; } from, to { opacity: 0; } }`;
+    blinkKeyframes.textContent = `@keyframes typed-blink { 50% { opacity: 0; } from, to { opacity: 0; } }`;
     document.head.appendChild(blinkKeyframes);
 }
 
