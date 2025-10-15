@@ -1,19 +1,18 @@
 /* --- VS Code Dark Theme Variables --- */
-/* --- VS Code Dark Theme Variables --- */
 :root {
-    --bg-primary: #121212;       /* Main background - Made darker */
-    --bg-secondary: #1e1e1e;     /* Panels, cards, sections - Made darker */
+    --bg-primary: #121212;      /* Main background - Made darker */
+    --bg-secondary: #1e1e1e;    /* Panels, cards, sections - Made darker */
     --bg-tertiary: #2a2a2a;      /* Inputs, button hover - Made darker */
     --border: #3c3c3c;          /* Borders */
     
-    --text-primary: #d4d4d4;     /* Main text */
-    --text-secondary: #a0a0a0;   /* Descriptions */
+    --text-primary: #d4d4d4;    /* Main text */
+    --text-secondary: #a0a0a0;  /* Descriptions */
     
-    --accent-yellow: #ffd700;    /* Highlights, stars */
-    --accent-cyan: #ffd700;      /* Logos, titles, links */
+    --accent-yellow: #ffd700;   /* Highlights, stars */
+    --accent-cyan: #ffd700;     /* Logos, titles, links */
     --accent-newcyan: #569cd6;
-    --accent-orange: #ffd700;    /* Buttons, stats */
-    --accent-green: #108a00;     /* Upwork FAB, success */
+    --accent-orange: #ffd700;   /* Buttons, stats */
+    --accent-green: #108a00;    /* Upwork FAB, success */
 }
 
 /* Reset and Base Styles */
@@ -69,7 +68,6 @@ body {
     align-items: center;
     font-size: 1.5rem;
     font-weight: 700;
-    /* color: var(--accent-cyan); */
     color: #ffffff;
 }
 
@@ -195,7 +193,6 @@ body {
 
 .hero-stats {
     display: flex;
-    /* flex-wrap: wrap; */
     gap: 2rem;
     margin-bottom: 2.5rem;
 }
@@ -240,23 +237,10 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.btn-primary:hover {
-    background: #ffbf00;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
-
 .btn-secondary {
     background: transparent;
     color: var(--text-primary);
     border: 2px solid var(--border);
-}
-
-.btn-secondary:hover {
-    background: var(--bg-tertiary);
-    color: var(--text-primary);
-    transform: translateY(-2px);
-    border-color: var(--text-primary);
 }
 
 .btn-full {
@@ -295,11 +279,9 @@ body {
 .code-line:nth-child(4) { width: 70%; animation-delay: 1.5s; }
 
 /* Sections */
-.services {
-    padding: 100px 0;
-    background: var(--bg-primary);
-}
-.portfolio, .testimonials {
+.services,
+.portfolio, 
+.testimonials {
     padding: 100px 0;
     background: var(--bg-primary);
 }
@@ -323,25 +305,52 @@ body {
     margin: 0 auto;
 }
 
-.services-grid {
+.services-grid,
+.portfolio-grid,
+.testimonials-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
 }
 
-.service-card {
+.service-card,
+.portfolio-card,
+.testimonial-card {
     background: var(--bg-secondary);
-    padding: 2.5rem;
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     border: 1px solid var(--border);
 }
 
-.service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    border-color: var(--accent-cyan);
+/* --- Card Hover Effects for DESKTOP ONLY --- */
+@media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover {
+        background: #ffbf00;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+    .btn-secondary:hover {
+        background: var(--bg-tertiary);
+        color: var(--text-primary);
+        transform: translateY(-2px);
+        border-color: var(--text-primary);
+    }
+    .service-card:hover,
+    .portfolio-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        border-color: var(--accent-cyan);
+    }
+    .testimonial-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        border-color: var(--accent-cyan);
+    }
+}
+
+.service-card {
+    padding: 2.5rem;
 }
 
 .service-icon {
@@ -388,30 +397,13 @@ body {
     content: '✓';
     position: absolute;
     left: 0;
-    color: var(--accent-green);
+    color: var(--accent-cyan);
     font-weight: bold;
 }
 
 /* Portfolio Section */
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-}
-
 .portfolio-card {
-    background: var(--bg-secondary);
-    border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    border: 1px solid var(--border);
-}
-
-.portfolio-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    border-color: var(--accent-cyan);
 }
 
 .portfolio-image {
@@ -426,15 +418,7 @@ body {
     position: relative;
 }
 
-.portfolio-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
+.portfolio-image img,
 .portfolio-image video {
     width: 100%;
     height: 100%;
@@ -460,27 +444,22 @@ body {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 }
-.portfolio-content{
-    a{
-        text-decoration: underline;
-        color: var(--accent-newcyan);
-        font-weight: 500;
-        transition: color 0.3s ease;
-        position: relative;
-        font-style: italic;
-    }
+.portfolio-content a{
+    text-decoration: underline;
+    color: var(--accent-newcyan);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+    font-style: italic;
 }
 
-.testimonial-author{
-    a{
-        /* padding:1px 0 ; */
-        text-decoration: underline;
-        font-style: italic;
-        color: var(--accent-cyan);
-        font-weight: 500;
-        transition: color 0.3s ease;
-        position: relative;
-    }
+.testimonial-author a{
+    text-decoration: underline;
+    font-style: italic;
+    color: var(--accent-newcyan);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
 }
 
 .whatsapp-link{
@@ -502,7 +481,6 @@ body {
     object-fit: cover;
 }
 
-/* Slideshow next button */
 .slide-next {
     position: absolute;
     right: 8px;
@@ -586,26 +564,9 @@ body {
 }
 
 /* Testimonials Section */
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-}
-
 .testimonial-card {
-    background: var(--bg-secondary);
     padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    border: 1px solid var(--border);
     text-align: center;
-}
-
-.testimonial-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-    border-color: var(--accent-cyan);
 }
 
 .testimonial-image {
@@ -627,11 +588,11 @@ body {
     overflow: hidden;
     border: 5px solid var(--bg-secondary);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
 
-    img{
-        height: 170px;
-        width: auto;
-    }
+.client-avatar img {
+    height: 170px;
+    width: auto;
 }
 
 .stars i {
@@ -863,12 +824,12 @@ body {
         padding-top: 0;
     }
     .hero-description {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-    line-height: 1.7;
-    color: var(--text-secondary);
-}
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        line-height: 1.7;
+        color: var(--text-secondary);
+    }
     .mobile-only {
         display: flex !important;
         justify-content: flex-end;
@@ -898,86 +859,148 @@ body {
         margin-top: 30px;
     }
     .hero-container {
-        margin-top: 1.5rem;
+        margin-top: 2rem;
     }
     .hero-title {
         font-size: 3rem;
     }
     .hero-stats {
         justify-content: center;
-
     }
     .stat-number {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--accent-orange);
-}
-
-.stat-label {
-    font-size: 0.7rem;
-    opacity: 0.8;
-    color: var(--text-secondary);
-}
-
-    .contact-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--accent-orange);
     }
+    .stat-label {
+        font-size: 0.7rem;
+        opacity: 0.8;
+        color: var(--text-secondary);
+    }
+    .contact-content,
     .footer-content {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
+
+    .services, .portfolio, .testimonials {
+        padding: 50px 0;
+    }
+    .code-animation {
+    width: 300px;
+    height: 200px;
+    background: rgb(0, 0, 0);
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    top: 150px;
+    right: 50px;
+    backdrop-filter: blur(10px);
+}
+
+    /* --- Updated 3D Carousel Styles --- */
     .services-grid, .portfolio-grid, .testimonials-grid {
+        position: relative;
         display: flex;
-        flex-direction: row;
-        overflow-x: auto;
-        gap: 1.2rem;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 1rem;
-        padding-left: 5vw;
-        padding-right: 5vw;
-        scrollbar-width: none;
-    }
-  
-    
-    .services-grid::-webkit-scrollbar, .portfolio-grid::-webkit-scrollbar, .testimonials-grid::-webkit-scrollbar {
-        display: none;
-    }
-    .service-card, .portfolio-card, .testimonial-card {
-        width: 90vw;
-        flex-shrink: 0;
-        scroll-snap-align: start;
+        justify-content: center;
+        align-items: center;
+        height: 600px; /* Increased height */
+        padding: 0; 
+        overflow: hidden;
+        perspective: 1000px;
+        transform-style: preserve-3d;
     }
 
-.service-card:hover, .portfolio-card:hover, .testimonial-card:hover {
-    transform: scale(1.0011);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    border-color: var(--accent-cyan);
-}
+    .service-card, .portfolio-card, .testimonial-card {
+        position: absolute;
+        width: 95%; /* Increased width */
+        max-width: 400px;
+        height: auto;
+        transition: transform 0.6s ease, opacity 0.6s ease, z-index 0.6s;
+        opacity: 0;
+    }
+
+    .service-card{
+        position: absolute;
+        width: 95%; /* Increased width */
+        max-width: 400px;
+        height: 100%;
+        transition: transform 0.6s ease, opacity 0.6s ease, z-index 0.6s;
+        opacity: 0;
+    }
+
+    .services-grid{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 475px; /* Increased height */
+        padding: 0; 
+        overflow: hidden;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+    }
     
-    .arrow {
+    .card-center {
+        transform: translateX(0) scale(0.95); /* Increased scale */
+        opacity: 1;
+        z-index: 5;
+    }
+
+    .card-right {
+        transform: translateX(55%) scale(0.8); /* Adjusted position and scale */
+        opacity: 0.5;
+        z-index: 4;
+        pointer-events: none;
+    }
+
+    .card-left {
+        transform: translateX(-55%) scale(0.8); /* Adjusted position and scale */
+        opacity: 0; 
+        z-index: 3;
+    }
+
+    .card-far-right,
+    .card-far-left {
+        transform: translateX(120%) scale(0.6);
+        opacity: 0;
+        z-index: 1;
+    }
+
+    .card-far-left {
+        transform: translateX(-120%) scale(0.6);
+    }
+
+    .scroll-arrows {
+        display: none;
+        position: relative;
+        top: -19px;
+        left: -298px;
+        width: auto;
+        /* display: flex; */
+        justify-content: flex-end;
+        gap: 0.5rem;
+        z-index: 10;
+    }
+
+    .scroll-arrows .arrow {
+        display: none;
+        pointer-events: all;
         background: var(--bg-tertiary);
         color: var(--text-primary);
-    border-radius: 50%;
-    height: 25px;
-    width: 25px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    }
-    .arrow:hover {
-        background: var(--bg-primary);
+        border-radius: 50%;
+        height: 42px; /* Increased size */
+        width: 42px;  /* Increased size */
+        /* display: flex; */
+        justify-content: center;
+        align-items: center;
         cursor: pointer;
-    }
-    .arrow:active {
-        background: #444;
-        
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
 }
 
 @media (max-width: 480px) {
-        .hero{
+    .hero{
         padding-top: 0;
     }
     .hero-title {
@@ -992,7 +1015,7 @@ body {
 
 
 @media (max-width: 600px) {
-        .hero{
+    .hero{
         padding-top:0;
     }
     .upwork-fab {
@@ -1005,10 +1028,10 @@ body {
         align-items: center;
         display: flex;
         background: none;
-        &:hover {
-            background: none;
-            box-shadow: none;
-        }
+    }
+    .upwork-fab:hover {
+        background: none;
+        box-shadow: none;
     }
     .upwork-fab-text {
         display: none !important;
@@ -1017,32 +1040,20 @@ body {
         font-size: 2rem !important;
         color: #fff !important;
         margin: 0 !important;
-        /* width: 32px !important;
-        height: 32px !important;
-        min-width: 32px !important;
-        min-height: 32px !important; */
         display: flex !important;
         align-items: center;
         justify-content: center;
         line-height: 1 !important;
     }
-/* .upwork-fab i.fab.fa-upwork:empty::before { */
-    /* content: "\f7e0"; /* Font Awesome Upwork icon code */
-    /* font-family: "Font Awesome 6 Brands"; Ensure using FA brand font */
-    /* font-size: 2rem; */
-    /* border-radius: 50%; */
-    /* color: #fff; */
-    /* display: block; */ 
-/* } */
-.upwork-logo {
-    display: inline;
-    height: 50px;
-    width: auto;
-    position: relative;
-    right: 20px;
-    bottom: 15px;
 
-}
+    .upwork-logo {
+        display: inline;
+        height: 50px;
+        width: auto;
+        position: relative;
+        right: 20px;
+        bottom: 15px;
+    }
 }
 
 /* Animations & Other Utility classes */

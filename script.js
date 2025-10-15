@@ -28,25 +28,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Navbar background on scroll
-
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
-        // More opaque dark background on scroll
-        navbar.style.background = 'rgba(30, 30, 30, 0.98)'; 
+        navbar.style.background = 'rgba(30, 30, 30, 0.98)';
         navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
     } else {
-        // Default transparent dark background
-        navbar.style.background = 'rgba(30, 30, 30, 0.85)'; 
+        navbar.style.background = 'rgba(30, 30, 30, 0.85)';
         navbar.style.boxShadow = 'none';
     }
 });
+
 // Intersection Observer for scroll animations
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
 };
-
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -55,36 +52,20 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe all sections for animations
 document.addEventListener('DOMContentLoaded', () => {
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
+    // Animate all sections on scroll
+    document.querySelectorAll('section').forEach(section => {
         section.classList.add('animate-on-scroll');
         observer.observe(section);
     });
 
-    // Animate service cards
-    const serviceCards = document.querySelectorAll('.service-card');
-    serviceCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
-        card.classList.add('animate-on-scroll');
-        observer.observe(card);
-    });
-
-    // Animate portfolio cards
-    const portfolioCards = document.querySelectorAll('.portfolio-card');
-    portfolioCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
-        card.classList.add('animate-on-scroll');
-        observer.observe(card);
-    });
-
-    // Animate testimonial cards
-    const testimonialCards = document.querySelectorAll('.testimonial-card');
-    testimonialCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
-        card.classList.add('animate-on-scroll');
-        observer.observe(card);
+    // Animate all cards with a staggered delay
+    ['.service-card', '.portfolio-card', '.testimonial-card'].forEach(selector => {
+        document.querySelectorAll(selector).forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+            card.classList.add('animate-on-scroll');
+            observer.observe(card);
+        });
     });
 });
 
@@ -94,14 +75,12 @@ if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Get form data
         const formData = new FormData(this);
         const name = formData.get('name');
         const email = formData.get('email');
         const project = formData.get('project');
         const message = formData.get('message');
         
-        // Create mailto link
         const subject = `New Project Inquiry: ${project}`;
         const body = `Hi CodeCrafterz,
 
@@ -121,26 +100,16 @@ ${name}`;
         
         const mailtoLink = `mailto:siddhantgupta385@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         
-        // Open email client
         window.location.href = mailtoLink;
-        
-        // Show success message
         showNotification('Email client opened! Your message is ready to send.');
-        
-        // Reset form
         this.reset();
     });
 }
 
 // Notification system
 function showNotification(message, type = 'success') {
-    // Remove existing notifications
-    const existingNotification = document.querySelector('.notification');
-    if (existingNotification) {
-        existingNotification.remove();
-    }
+    document.querySelector('.notification')?.remove();
     
-    // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
@@ -150,84 +119,37 @@ function showNotification(message, type = 'success') {
         </div>
     `;
     
-    // Add styles
     notification.style.cssText = `
-        position: fixed;
-        top: 90px;
-        right: 20px;
-        background: #10b981;
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
+        position: fixed; top: 90px; right: 20px;
+        background: #10b981; color: white;
+        padding: 1rem 1.5rem; border-radius: 8px;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        z-index: 1001;
+        z-index: 1001; max-width: 400px;
         animation: slideInRight 0.3s ease-out;
-        max-width: 400px;
     `;
-    
     notification.querySelector('.notification-content').style.cssText = `
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
+        display: flex; align-items: center; gap: 0.5rem;
     `;
     
-    // Add to page
     document.body.appendChild(notification);
     
-    // Remove after 5 seconds
     setTimeout(() => {
         notification.style.animation = 'slideOutRight 0.3s ease-out forwards';
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.remove();
-            }
-        }, 300);
+        setTimeout(() => notification.remove(), 300);
     }, 5000);
 }
 
-// Add CSS for notifications
 const notificationStyles = document.createElement('style');
 notificationStyles.textContent = `
-    @keyframes slideInRight {
-        from {
-            opacity: 0;
-            transform: translateX(100%);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-    
-    @keyframes slideOutRight {
-        from {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        to {
-            opacity: 0;
-            transform: translateX(100%);
-        }
-    }
+    @keyframes slideInRight { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes slideOutRight { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(100%); } }
 `;
 document.head.appendChild(notificationStyles);
 
-// Parallax effect for hero section
-// window.addEventListener('scroll', () => {
-//     const scrolled = window.pageYOffset;
-//     const hero = document.querySelector('.hero');
-//     if (hero) {
-//         hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-//     }
-// });
-
-// Add loading animation to page
+// Page load animations
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
-    
-    // Animate elements on load
-    const animateElements = document.querySelectorAll('.hero-content, .hero-visual');
-    animateElements.forEach((element, index) => {
+    document.querySelectorAll('.hero-content, .hero-visual').forEach((element, index) => {
         setTimeout(() => {
             element.style.opacity = '1';
             element.style.transform = 'translateX(0)';
@@ -235,93 +157,62 @@ window.addEventListener('load', () => {
     });
 });
 
-// // Typing effect for hero title
-// function typeWriter(element, text, speed = 50) {
-//     let i = 0;
-//     element.innerHTML = '';
-//     // If the text contains HTML, split by tags and characters
-//     const tokens = text.match(/<[^>]+>|[^<]/g);
-//     function type() {
-//         if (i < tokens.length) {
-//             element.innerHTML += tokens[i];
-//             i++;
-//             setTimeout(type, speed);
-//         }
-//     }
-//     type();
-// }
-
-// // Initialize typing effect when page loads
-// document.addEventListener('DOMContentLoaded', () => {
-//     const heroTitle = document.querySelector('.hero-title');
-//     if (heroTitle) {
-//         const originalText = heroTitle.innerHTML;
-//         setTimeout(() => {
-//             typeWriter(heroTitle, originalText, 30);
-//         }, 500);
-//     }
-// });
-   if (typeof Typed !== 'undefined') {
-        const typedOptions = {
-            strings: [
-                'Expert Full-Stack Development <span class="highlight">That delivers results.</span>'
-            ],
-            typeSpeed: 30,
-            showCursor: true,
-            cursorChar: '|',
-            startDelay: 100,
-            onComplete: (self) => {
-                if (self.cursor) {
-                    self.cursor.style.animation = 'typed-blink 0.75s infinite';
-                }
-            },
-        };
-        if (document.querySelector('#typed-output')) {
-            new Typed('#typed-output', typedOptions);
-        }
-        // Add the blink animation for the cursor
-        const blinkKeyframes = document.createElement('style');
-        blinkKeyframes.textContent = `@keyframes typed-blink { from, to { opacity: 0; } 50% { opacity: 0; } }`;
-        document.head.appendChild(blinkKeyframes);
+// Typing effect for hero title (if Typed.js library is included)
+if (typeof Typed !== 'undefined') {
+    const typedOptions = {
+        strings: ['Expert Full-Stack Development <span class="highlight">That delivers results.</span>'],
+        typeSpeed: 30,
+        showCursor: true,
+        cursorChar: '|',
+        startDelay: 100,
+        onComplete: (self) => {
+            if (self.cursor) {
+                self.cursor.style.animation = 'typed-blink 0.75s infinite';
+            }
+        },
+    };
+    if (document.querySelector('#typed-output')) {
+        new Typed('#typed-output', typedOptions);
     }
-// Add scroll progress indicator
+    const blinkKeyframes = document.createElement('style');
+    blinkKeyframes.textContent = `@keyframes typed-blink { 50% { opacity: 1; } from, to { opacity: 0; } }`;
+    document.head.appendChild(blinkKeyframes);
+}
+
+// Scroll progress indicator
 function createScrollIndicator() {
     const indicator = document.createElement('div');
     indicator.style.cssText = `
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 0%;
-        height: 3px;
+        position: fixed; top: 70px; left: 0;
+        width: 0%; height: 3px;
         background: linear-gradient(90deg, #ffd700, #ffed4a);
-        z-index: 1001;
-        transition: width 0.1s ease;
+        z-index: 1001; transition: width 0.1s ease;
     `;
     document.body.appendChild(indicator);
     
     window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset;
         const docHeight = document.body.scrollHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / docHeight) * 100;
+        const scrollPercent = (window.pageYOffset / docHeight) * 100;
         indicator.style.width = scrollPercent + '%';
     });
 }
-
-// Initialize scroll indicator
 createScrollIndicator();
 
-// Add hover effects to buttons
+// Button hover and ripple effects
 document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-2px) scale(1.02)';
-    });
-    
-    btn.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
+    btn.addEventListener('mouseenter', function() { this.style.transform = 'translateY(-2px) scale(1.02)'; });
+    btn.addEventListener('mouseleave', function() { this.style.transform = 'translateY(0) scale(1)'; });
+    btn.addEventListener('click', createRipple);
 });
 
-// Add ripple effect to buttons
+const rippleStyles = document.createElement('style');
+rippleStyles.textContent = `
+    .btn { position: relative; overflow: hidden; }
+    .ripple { position: absolute; border-radius: 50%; background-color: rgba(255, 255, 255, 0.6); transform: scale(0); animation: ripple 0.6s linear; }
+    @keyframes ripple { to { transform: scale(4); opacity: 0; } }
+`;
+document.head.appendChild(rippleStyles);
+
 function createRipple(event) {
     const button = event.currentTarget;
     const circle = document.createElement('span');
@@ -333,111 +224,109 @@ function createRipple(event) {
     circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
     circle.classList.add('ripple');
     
-    const ripple = button.getElementsByClassName('ripple')[0];
-    if (ripple) {
-        ripple.remove();
-    }
-    
+    button.querySelector('.ripple')?.remove();
     button.appendChild(circle);
 }
 
-// Add ripple styles
-const rippleStyles = document.createElement('style');
-rippleStyles.textContent = `
-    .btn {
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .ripple {
-        position: absolute;
-        border-radius: 50%;
-        background-color: rgba(255, 255, 255, 0.6);
-        transform: scale(0);
-        animation: ripple 0.6s linear;
-    }
-    
-    @keyframes ripple {
-        to {
-            transform: scale(4);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(rippleStyles);
-
-// Add ripple effect to all buttons
-document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('click', createRipple);
-}); 
-
-
+// ✅ CORRECTED CAROUSEL LOGIC WITH ROBUST SWIPE SUPPORT
 document.addEventListener('DOMContentLoaded', function () {
-    function setupScrollArrows(gridSelector, arrowContainerSelector) {
+    function setupCarousel(gridSelector, arrowContainerSelector) {
         const grid = document.querySelector(gridSelector);
         const arrows = document.querySelector(arrowContainerSelector);
-        if (!grid || !arrows) return;
-
-        const left = arrows.querySelector('.arrow-left');
-        const right = arrows.querySelector('.arrow-right');
-
-        // Manual scrolling
-        left.addEventListener('click', function (e) {
-            e.preventDefault();
-            grid.scrollBy({ left: -grid.offsetWidth * 0.8, behavior: 'smooth' });
-        });
-        right.addEventListener('click', function (e) {
-            e.preventDefault();
-            grid.scrollBy({ left: grid.offsetWidth * 0.8, behavior: 'smooth' });
-        });
-
-        // Auto-scroll function
-        let autoScrollInterval;
-        const startAutoScroll = () => {
-            if (autoScrollInterval) return; // prevent multiple intervals
-            autoScrollInterval = setInterval(() => {
-                
-                const atEnd = grid.scrollLeft + grid.offsetWidth >= grid.scrollWidth - 30;
-                if (atEnd) {
-                    grid.scrollTo({ left: 0, behavior: 'smooth' });
-                    // setTimeout(() => {
-                    //     grid.scrollBy({ left: grid.offsetWidth * 0.8, behavior: 'smooth' });
-                    // }, 300);
-                } else {
-                    grid.scrollBy({ left: grid.offsetWidth * 0.8, behavior: 'smooth' });
-                }
-            }, 3000);
-        };
-
-        const stopAutoScroll = () => {
-            clearInterval(autoScrollInterval);
-            autoScrollInterval = null;
-        };
-
-        // Pause on hover
-        grid.addEventListener('mouseenter', stopAutoScroll);
-        grid.addEventListener('mouseleave', startAutoScroll);
-
-        // --- Intersection Observer to start auto-scroll only when visible ---
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        startAutoScroll();
-                    } else {
-                        stopAutoScroll();
-                    }
-                });
-            },
-            {
-                threshold: 0.5, // triggers when 50% of the grid is visible
+        if (!grid) return;
+        
+        const observer = new MutationObserver((mutations, obs) => {
+            const cards = grid.querySelectorAll('.service-card, .portfolio-card, .testimonial-card');
+            if (cards.length > 0) {
+                initialize(cards);
+                obs.disconnect(); // Stop observing once cards are found
             }
-        );
+        });
+        observer.observe(grid, { childList: true });
 
-        observer.observe(grid);
+        function initialize(cards) {
+            let currentIndex = 0;
+            const totalCards = cards.length;
+
+            function updateCarousel() {
+                cards.forEach((card, i) => {
+                    card.classList.remove('card-center', 'card-left', 'card-right', 'card-far-left', 'card-far-right');
+                    
+                    const leftIndex = (currentIndex - 1 + totalCards) % totalCards;
+                    const rightIndex = (currentIndex + 1) % totalCards;
+                    const farLeftIndex = (currentIndex - 2 + totalCards) % totalCards;
+                    const farRightIndex = (currentIndex + 2) % totalCards;
+
+                    if (i === currentIndex) card.classList.add('card-center');
+                    else if (i === rightIndex) card.classList.add('card-right');
+                    else if (i === leftIndex) card.classList.add('card-left');
+                    else if (i === farRightIndex) card.classList.add('card-far-right');
+                    else if (i === farLeftIndex) card.classList.add('card-far-left');
+                });
+            }
+
+            function showNext() {
+                currentIndex = (currentIndex + 1) % totalCards;
+                updateCarousel();
+            }
+
+            function showPrev() {
+                currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+                updateCarousel();
+            }
+
+            // Arrow controls
+            if (arrows) {
+                arrows.querySelector('.arrow-left')?.addEventListener('click', showPrev);
+                arrows.querySelector('.arrow-right')?.addEventListener('click', showNext);
+            }
+            
+            // Allow clicking on side cards to navigate
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    if (card.classList.contains('card-left')) showPrev();
+                    else if (card.classList.contains('card-right')) showNext();
+                });
+            });
+            
+            // --- ✅ NEW ROBUST TOUCH SWIPE LOGIC ---
+            let touchStartX = 0;
+            let touchStartY = 0;
+
+            grid.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            }, { passive: true }); // Use passive for better scroll performance
+
+            grid.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].clientX;
+                const touchEndY = e.changedTouches[0].clientY;
+
+                const deltaX = touchStartX - touchEndX;
+                const deltaY = touchStartY - touchEndY;
+
+                // Only trigger swipe if horizontal movement is greater than vertical
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    // Check for a minimum swipe distance (threshold)
+                    if (Math.abs(deltaX) > 50) {
+                        if (deltaX > 0) {
+                            // Swiped left
+                            showNext();
+                        } else {
+                            // Swiped right
+                            showPrev();
+                        }
+                    }
+                }
+            });
+            // --- END OF NEW LOGIC ---
+            
+            updateCarousel(); // Initial setup
+        }
     }
-    // Initialize for all scrollable grids
-    setupScrollArrows('.services-grid', '#services-arrows');
-    setupScrollArrows('.portfolio-grid', '#portfolio-arrows');
-    setupScrollArrows('.testimonials-grid', '#testimonials-arrows');
+
+    // Initialize for all carousels
+    setupCarousel('.services-grid', '#services-arrows');
+    setupCarousel('.portfolio-grid', '#portfolio-arrows');
+    setupCarousel('.testimonials-grid', '#testimonials-arrows');
 });
