@@ -81,19 +81,19 @@ if (contactForm) {
         const project = formData.get('project');
         const message = formData.get('message');
         
-        const subject = `New Project Inquiry: ${project}`;
-        const body = `Hi CodeCrafterz,
+        const subject = `AI Tool Fixing Request: ${project}`;
+        const body = `Hi AI Tool Enhancer,
 
-I'm interested in working with you on a project.
+I need help fixing my AI-generated prototype for production.
 
 Name: ${name}
 Email: ${email}
-Project Type: ${project}
+Fixing Service: ${project}
 
 Project Description:
 ${message}
 
-Looking forward to hearing from you!
+Looking forward to fixing my AI tool!
 
 Best regards,
 ${name}`;
@@ -160,7 +160,7 @@ window.addEventListener('load', () => {
 // Typing effect for hero title (if Typed.js library is included)
 if (typeof Typed !== 'undefined') {
     const typedOptions = {
-        strings: ['Expert Full-Stack Development <span class="highlight">That delivers results.</span>'],
+        strings: ['Fix AI Prototypes <span class="highlight">Into Production-Ready Applications</span>'],
         typeSpeed: 30,
         showCursor: true,
         cursorChar: '|',
