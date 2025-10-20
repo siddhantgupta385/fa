@@ -407,7 +407,7 @@ body {
 }
 
 .portfolio-image {
-    height: 200px;
+    height: 350px;
     background: var(--bg-tertiary);
     display: flex;
     align-items: center;
