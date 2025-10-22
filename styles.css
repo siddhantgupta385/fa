@@ -899,7 +899,19 @@ body {
 }
 
     /* --- Updated 3D Carousel Styles --- */
-    .services-grid, .portfolio-grid, .testimonials-grid {
+    .services-grid, .testimonials-grid {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 600px; /* Increased height */
+        padding: 0; 
+        overflow: hidden;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+    }
+
+        .portfolio-grid {
         position: relative;
         display: flex;
         justify-content: center;
@@ -918,6 +930,12 @@ body {
         height: auto;
         transition: transform 0.6s ease, opacity 0.6s ease, z-index 0.6s;
         opacity: 0;
+    }
+
+    .portfolio-card> .portfolio-image {
+        height: 200px; /* Increased height */
+        width: 100%;
+        object-fit: cover;
     }
 
     .service-card{
