@@ -37,7 +37,23 @@ body {
 }
 
 .upwork-logo {
-    display: none;
+    height: 62px;
+    width: auto;
+    position: fixed;
+    right: 24px;
+    bottom: 15px;
+    z-index: 1;
+    cursor: pointer;
+
+}
+.whatsapp-logo {
+  height: 62px;
+  width: auto;
+  position: fixed;
+  right: 24px;
+  bottom: 90px;
+  z-index: 1;
+  cursor: pointer;
 
 }
 
@@ -786,28 +802,15 @@ body {
 
 /* Floating Upwork Button */
 .upwork-fab {
-    position: fixed;
-    right: 1.2rem;
-    bottom: 1.2rem;
-    z-index: 2000;
-    background: var(--accent-green);
-    color: #fff;
-    min-width: 54px;
-    height: 54px;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-    transition: background 0.2s, box-shadow 0.2s;
-    text-decoration: none;
-    pointer-events: auto;
-    padding: 0 1.2rem;
-    gap: 0.7rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    white-space: nowrap;
+        min-width: 44px;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        border-radius: 50%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        background: none;
 }
 .upwork-fab:hover {
     background: #7db164;
@@ -1065,12 +1068,22 @@ body {
     }
 
     .upwork-logo {
-        display: inline;
-        height: 50px;
-        width: auto;
-        position: relative;
-        right: 20px;
-        bottom: 15px;
+    height: 45px;
+    width: auto;
+    position: fixed;
+    right: 22px;
+    bottom: 15px;
+    z-index: 1;
+    cursor: pointer;
+    }
+    .whatsapp-logo {
+height: 45px;
+    width: auto;
+    position: fixed;
+    right: 22px;
+    bottom: 73px;
+    z-index: 1;
+    cursor: pointer;
     }
 }
 
