@@ -36,6 +36,7 @@ body {
     padding: 0 20px;
 }
 
+/* Desktop/Laptop spacing - more space between icons */
 .upwork-logo {
     height: 62px;
     width: auto;
@@ -51,10 +52,55 @@ body {
   width: auto;
   position: fixed;
   right: 24px;
-  bottom: 90px;
+  bottom: 95px;
   z-index: 1;
   cursor: pointer;
 
+}
+.linkedin-link, .x-link {
+    height: 62px;
+    width: 62px;
+    position: fixed;
+    right: 24px;
+    z-index: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+}
+.linkedin-link {
+    background: #0077b5;
+    color: #ffffff;
+    bottom: 175px;
+}
+.linkedin-link:hover {
+    background: #005885;
+    box-shadow: 0 6px 20px rgba(0, 119, 181, 0.4);
+    transform: scale(1.1);
+}
+.linkedin-link .linkedin-icon {
+    font-size: 28px;
+    color: #ffffff;
+}
+.x-link {
+    background: #000000;
+    color: #ffffff;
+    bottom: 255px;
+}
+.x-link:hover {
+    background: #1a1a1a;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+}
+.x-link .x-icon {
+    width: 28px;
+    height: 28px;
+    color: #ffffff;
+    display: block;
 }
 
 /* Navigation */
@@ -1081,9 +1127,28 @@ height: 45px;
     width: auto;
     position: fixed;
     right: 22px;
-    bottom: 73px;
+    bottom: 70px;
     z-index: 1;
     cursor: pointer;
+    }
+    .linkedin-link {
+        height: 45px;
+        width: 45px;
+        right: 22px;
+        bottom: 125px;
+    }
+    .linkedin-link .linkedin-icon {
+        font-size: 20px;
+    }
+    .x-link {
+        height: 45px;
+        width: 45px;
+        right: 22px;
+        bottom: 180px;
+    }
+    .x-link .x-icon {
+        width: 20px;
+        height: 20px;
     }
 }
 
